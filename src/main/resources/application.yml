@@ -1,0 +1,26 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: C:/logs/ms-config-properties/{application}/{profile}/
+#        git:
+#          uri: https://github.com/myGitHub/my-example
+#          search-paths:
+#            - "ms-config-properties/{application}/{profile}"
+#          repos:
+#            local:
+#              pattern: local*
+#              uri: C:/logs/ms-config-properties/{application}/{profile}
+        bootstrap: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://172.18.0.2:8761/eureka}

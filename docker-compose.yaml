@@ -1,0 +1,26 @@
+services:
+  eureka-server:
+    image: 'eureka-server-app'
+    build: C:\Users\Prorok\IdeaProjects\eureka-server\.
+    networks:
+      - db-network
+    ports:
+      - "8761:8761"
+
+  app:
+    image: 'eureka-config-server-app'
+    build: ./
+    container_name: 'eureka-config-server-app'
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://172.20.0.2:8761/eureka
+
+    networks:
+      - db-network
+    ports:
+      - 8088:8088
+
+networks:
+  db-network:
+
+volumes:
+  eureka-server-app:
